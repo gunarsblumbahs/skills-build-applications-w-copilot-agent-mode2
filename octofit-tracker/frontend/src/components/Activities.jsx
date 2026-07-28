@@ -25,7 +25,7 @@ export default function Activities() {
 
   return (
     <section>
-      <h2 className="h4 mb-3">Activities</h2>
+      <h2 className="h4 mb-3">My Activities</h2>
       {loading && <p>Loading my activities…</p>}
       {error && <p className="text-danger">{error}</p>}
       {!loading && !error && (
