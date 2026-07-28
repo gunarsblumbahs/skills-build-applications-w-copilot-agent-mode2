@@ -26,7 +26,7 @@ function App() {
             Connect the presentation, logic, and data tiers with environment-aware API routes.
           </p>
           <p className="small text-muted mb-0">
-            Define VITE_CODESPACE_NAME in .env.local to use Codespaces URLs. When it is unset, the app falls back to localhost.
+            Fixed - Define VITE_CODESPACE_NAME in .env.local to use Codespaces URLs. When it is unset, the app falls back to localhost.
           </p>
         </div>
       </div>
