@@ -1,20 +1,23 @@
-import mongoose from 'mongoose';
+import { connectDatabase } from '../config/database';
+import { Activity, LeaderboardEntry, Team, User, Workout } from '../models';
 
-const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
-
-/**
- * Seed the octofit_db database with test data
- */
-async function seedDatabase() {
+async function seedDatabase(): Promise<void> {
   try {
-    await mongoose.connect(connectionString);
+    await connectDatabase();
 
-    console.log('Connected to octofit_db');
+    await User.deleteMany({});
+    await Team.deleteMany({});
+    await Activity.deleteMany({});
+    await Workout.deleteMany({});
+    await LeaderboardEntry.deleteMany({});
 
-    // TODO: Add seed data for users, teams, activities, leaderboard, and workouts
+    await User.create({ name: 'Ava', email: 'ava@example.com', role: 'captain' });
+    await Team.create({ name: 'Storm Riders', captain: 'Ava' });
+    await Activity.create({ userId: 'ava', type: 'run', duration: 30 });
+    await Workout.create({ title: 'Core Blast', difficulty: 'intermediate' });
+    await LeaderboardEntry.create({ userId: 'ava', score: 120 });
 
     console.log('Database seeding complete');
-    await mongoose.disconnect();
   } catch (error) {
     console.error('Error seeding database:', error);
     process.exit(1);
